@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.3">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Harness Check In/Out&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-family: Arial, sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>max-width: 700px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: auto;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 2em;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>input, textarea, button {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.5em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 0.5em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1em;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.inline-buttons {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>gap: 1em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 1em;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.inline-buttons button {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>flex: 1;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.75em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 2px solid #ccc;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.highlight-yes {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background-color: #d4f8d4;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-color: green;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.highlight-no {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background-color: #f8d4d4;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-color: red;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>#reasonBox {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 1em;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>#logList {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 2em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding-top: 1em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-top: 1px solid #ccc;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>li {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 0.5em;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;h2&gt;Prototype Harness Check In/Out&lt;/h2&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;label&gt;Scan or Enter Part Number&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;input type="text" id="barcode" placeholder="e.g., H123456" autocomplete="off"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;label&gt;First Name&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;input type="text" id="firstName"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;label&gt;Last Name&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;input type="text" id="lastName"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;label&gt;Does this harness have a build paper?&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="inline-buttons"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button id="yesBtn" onclick="selectBuildPaper(true)"&gt;Yes&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button id="noBtn" onclick="selectBuildPaper(false)"&gt;No&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="reasonBox"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;label&gt;Why no build paper?&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;textarea id="noReason" rows="3" placeholder="Explain why..."&gt;&lt;/textarea&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="inline-buttons"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button onclick="submitData('Check Out')"&gt;Check Out&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button onclick="submitData('Check In')"&gt;Check In&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="logList"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h3&gt;Recent Activity&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;ul id="log"&gt;&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>let hasBuildPaper = null;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function selectBuildPaper(choice) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>hasBuildPaper = choice;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const yesBtn = document.getElementById('yesBtn');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const noBtn = document.getElementById('noBtn');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const reasonBox = document.getElementById('reasonBox');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (choice) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>yesBtn.classList.add("highlight-yes");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>noBtn.classList.remove("highlight-no");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>reasonBox.style.display = "none";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>noBtn.classList.add("highlight-no");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>yesBtn.classList.remove("highlight-yes");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>reasonBox.style.display = "block";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function submitData(actionType) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const barcode = document.getElementById('barcode').value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const firstName = document.getElementById('firstName').value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const lastName = document.getElementById('lastName').value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const reason = document.getElementById('noReason').value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const timestamp = new Date().toLocaleString();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!barcode || !firstName || !lastName || hasBuildPaper === null) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>alert("Please fill in all required fields and select build paper status.");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!hasBuildPaper &amp;&amp; !reason) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>alert("Please provide a reason for missing build paper.");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const payload = {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>action: actionType,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>partNumber: barcode,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>firstName,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>lastName,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>hasBuildPaper,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>reason,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>date: timestamp</p>
+<p class="p1"><span class="Apple-converted-space">    </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>fetch("https://script.google.com/macros/s/AKfycbz-qoqOoINibATHwLdXLUNST7_PGfgUgR4jvDL3YOCC4kbSPqroqnDoBZcszjkKUcQE7Q/exec", {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>method: "POST",</p>
+<p class="p1"><span class="Apple-converted-space">      </span>body: JSON.stringify(payload),</p>
+<p class="p1"><span class="Apple-converted-space">      </span>headers: { "Content-Type": "application/json" }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>})</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.then(response =&gt; response.text())</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.then(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>logAction(payload);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>clearForm();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>alert("Submitted to Google Sheet!");</p>
+<p class="p1"><span class="Apple-converted-space">    </span>})</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.catch(error =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>console.error("Error:", error);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>alert("Failed to submit.");</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function logAction(data) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const entry = `${data.date} — ${data.firstName} ${data.lastName} ${data.action} ${data.partNumber} — Build Paper: ${data.hasBuildPaper ? 'Yes' : 'No'}${data.reason ? ' — Reason: ' + data.reason : ''}`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const li = document.createElement('li');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>li.textContent = entry;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('log').prepend(li);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function clearForm() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('barcode').value = '';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('firstName').value = '';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('lastName').value = '';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('noReason').value = '';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>hasBuildPaper = null;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('yesBtn').classList.remove("highlight-yes");</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('noBtn').classList.remove("highlight-no");</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('reasonBox').style.display = "none";</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
